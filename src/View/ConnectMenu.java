@@ -23,18 +23,20 @@ public class ConnectMenu {
 
         ipTextField = new JTextField(15);
         ipTextField.setToolTipText("IP address");
-        ipTextField.setBounds(125, 25, 150, 25);
+        ipTextField.setBounds(125, 10, 150, 25);
         JLabel ipLabel = new JLabel("DB IP address");
+        ipLabel.setBounds(10, 10, 150, 25);
         loginTextField = new JTextField(15);
-        JLabel loginLabel = new JLabel("DB Login          ");
+        loginTextField.setBounds(125, 40, 150, 25);
+        JLabel loginLabel = new JLabel("DB Login");
+        loginLabel.setBounds(10, 40, 150, 25);
         passwordTextField = new JPasswordField(15);
+        passwordTextField.setBounds(125, 70, 150, 25);
         JLabel passwordLabel = new JLabel("DB Password ");
+        passwordLabel.setBounds(10, 70, 150, 25);
 
         JPanel panel = new JPanel(); // the panel is not visible in output
-        var layout = new FlowLayout(FlowLayout.LEFT);
-        layout.setHgap(10);
-        layout.setVgap(10);
-        panel.setLayout(layout);
+        panel.setLayout(null);
         panel.add(ipLabel);
         panel.add(ipTextField);
         panel.add(loginLabel);
@@ -43,7 +45,7 @@ public class ConnectMenu {
         panel.add(passwordTextField);
 
         JButton connect = new JButton("Connect");
-        connect.setBounds(125, 225, 150, 50);
+        connect.setBounds(75, 110, 150, 35);
         panel.add(connect);
         connect.addActionListener(this::connect);
         frame.setLocationRelativeTo(null);

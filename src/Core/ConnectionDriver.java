@@ -14,18 +14,20 @@ public class ConnectionDriver {
     public boolean connect(String ip, String login, String password) throws SQLException {
         Locale.setDefault(Locale.ENGLISH);
         String url = "jdbc:oracle:thin:@"+ip+":1521:XE";
-        System.out.printf("url: " + url + "\n" + "login: " + login + "\npassword: " + password + "\nconnecting... ");
         connection = DriverManager.getConnection(url, login, password);
         if (connection != null) {
-            System.out.println("done!");
             return true;
         } else {
-            System.out.println("failed!");
             return false;
         }
-        //statement = connection.createStatement();
-        //String sql;
-        //sql = "SELECT * FROM developers";
-        //ResultSet resultSet = statement.executeQuery(sql);
     }
+
+    public ResultSet getListTables() throws SQLException {
+        statement = connection.createStatement();
+        String sql;
+        sql = "SELECT * FROM FLIGHT_SCHEDULE";
+        ResultSet resultSet = statement.executeQuery(sql);
+        return resultSet;
+    }
+
 }

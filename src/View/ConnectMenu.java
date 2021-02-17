@@ -19,7 +19,7 @@ public class ConnectMenu {
         this.conDriver = conDriver;
         frame = new JFrame("Connection");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 180);
+        frame.setSize(300, 190);
 
         ipTextField = new JTextField(15);
         ipTextField.setToolTipText("IP address");
@@ -35,7 +35,7 @@ public class ConnectMenu {
         JLabel passwordLabel = new JLabel("DB Password ");
         passwordLabel.setBounds(10, 70, 150, 25);
 
-        JPanel panel = new JPanel(); // the panel is not visible in output
+        JPanel panel = new JPanel();
         panel.setLayout(null);
         panel.add(ipLabel);
         panel.add(ipTextField);
@@ -45,7 +45,7 @@ public class ConnectMenu {
         panel.add(passwordTextField);
 
         JButton connect = new JButton("Connect");
-        connect.setBounds(75, 110, 150, 35);
+        connect.setBounds(68, 105, 150, 35);
         panel.add(connect);
         connect.addActionListener(this::connect);
         frame.setLocationRelativeTo(null);
@@ -62,7 +62,6 @@ public class ConnectMenu {
                 WorkingMenu workingMenu = new WorkingMenu(conDriver);
             }
         } catch (SQLException e) {
-            //JOptionPane.showMessageDialog(frame, "Connection error");
             e.getErrorCode();
         }
     }

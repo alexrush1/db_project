@@ -29,6 +29,12 @@ public class WorkingMenu {
         list_tables.setBounds(68, 30, 150, 35);
         panel.add(list_tables);
         list_tables.addActionListener(this::getSchedule);
+
+        JButton testData = new JButton("Fill test data");
+        testData.setBounds(68, 60, 150, 35);
+        panel.add(testData);
+        testData.addActionListener(this::testData);
+
         frame.getContentPane().add(panel);
     }
 
@@ -73,4 +79,13 @@ public class WorkingMenu {
             frame.setVisible(true);
         } catch (SQLException ex) {}
     }
+
+    private void testData(ActionEvent e) {
+        try {
+            conDriver.loadTestData();
+        } catch (SQLException ee) {
+            JOptionPane.showMessageDialog(frame, "Something wrong!");
+        }
+    }
+
 }

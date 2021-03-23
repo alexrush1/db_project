@@ -45,8 +45,14 @@ public class ConnectMenu {
         panel.add(passwordTextField);
 
         JButton connect = new JButton("Connect");
-        connect.setBounds(68, 105, 150, 35);
+        connect.setBounds(35, 105, 100, 35);
         panel.add(connect);
+
+        JButton connectStandart = new JButton("Auto login");
+        connectStandart.setBounds(165, 105, 100, 35);
+        panel.add(connectStandart);
+        connectStandart.addActionListener(this::connectStandart);
+
         connect.addActionListener(this::connect);
         frame.setLocationRelativeTo(null);
         frame.setFocusable(true);
@@ -56,7 +62,19 @@ public class ConnectMenu {
 
     public void connect(ActionEvent event) {
         try {
-            var status = conDriver.connect(ipTextField.getText(), loginTextField.getText(), passwordTextField.getText());
+            boolean status = conDriver.connect(ipTextField.getText(), loginTextField.getText(), passwordTextField.getText());
+            if (status) {
+                frame.setVisible(false);
+                WorkingMenu workingMenu = new WorkingMenu(conDriver);
+            }
+        } catch (SQLException e) {
+            e.getErrorCode();
+        }
+    }
+
+    public void connectStandart(ActionEvent event) {
+        try {
+            boolean status = conDriver.connect("84.237.50.81", "18204_Timofeev", "mama02091969");
             if (status) {
                 frame.setVisible(false);
                 WorkingMenu workingMenu = new WorkingMenu(conDriver);

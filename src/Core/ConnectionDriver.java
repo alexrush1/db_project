@@ -30,4 +30,9 @@ public class ConnectionDriver {
         return resultSet;
     }
 
+    public void loadTestData() throws SQLException {
+        statement = connection.createStatement();
+        TestDataInsert.createTable(statement);
+    }
+
 }

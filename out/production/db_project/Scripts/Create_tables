@@ -150,7 +150,7 @@ CREATE table "PASSENGERS" (
     "DOCUMENT_ID"   NUMBER NOT NULL,
     "FLIGHT_NUMBER" VARCHAR2(10) NOT NULL,
     "STATUS"        NUMBER NOT NULL,
-    constraint  "PASSENGERS_PK" primary key ("ID")
+    constraint  "PASSENGERS_PK" primary key ("DOCUMENT_ID")
 );
 
 CREATE sequence "PASSENGERS_SEQ";

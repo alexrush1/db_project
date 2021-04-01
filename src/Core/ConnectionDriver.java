@@ -69,4 +69,23 @@ public class ConnectionDriver {
         } catch (Exception e) {}
     }
 
+    public void commitPassenger(String firstName, String lastName, String documentId, String flightNumber, int status) throws SQLException {
+        statement = connection.createStatement();
+        String sql;
+        sql = "INSERT INTO PASSENGERS VALUES ('" + firstName + "', '" + lastName + "', " + Integer.parseInt(documentId) + ", '" + flightNumber +
+                "', " + status + ")";
+        System.out.println(sql);
+        statement.execute(sql);
+    }
+
+    public void updatePassenger(String firstName, String lastName, String documentId, String flightNumber, int status, int id) throws SQLException {
+        statement = connection.createStatement();
+        String sql;
+        //sql = "UPDATE PASSENGERS SET FIRST_NAME='" + firstName + "', LAST_NAME='" + lastName + "', DOCUMENT_ID=" + Integer.parseInt(documentId) + ", FLIGHT_NUMBER='" + flightNumber +
+        //        "', STATUS=" + status + " WHERE ID = " + id + ";";
+        sql = "UPDATE PASSENGERS SET FIRST_NAME='" + firstName + "' WHERE ID = " + id + ";";
+        System.out.println(sql);
+        statement.executeQuery(sql);
+    }
+
 }

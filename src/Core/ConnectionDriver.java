@@ -36,8 +36,16 @@ public class ConnectionDriver {
         return resultSet;
     }
 
+    public ResultSet getPassengersList() throws SQLException {
+        statement = connection.createStatement();
+        String sql;
+        sql = "SELECT * FROM PASSENGERS";
+        ResultSet resultSet = statement.executeQuery(sql);
+        return resultSet;
+    }
+
     public void createTables() throws IOException, SQLException {
-        ScriptRunner runner = new ScriptRunner(connection, true, true);
+        ScriptRunner runner = new ScriptRunner(connection, true, false);
         System.out.println(System.getProperty("user.dir"));
         InputStreamReader reader = new InputStreamReader(new FileInputStream("src/Scripts/Create_tables"));
         try {
@@ -46,7 +54,7 @@ public class ConnectionDriver {
     }
 
     public void dropTables() throws FileNotFoundException {
-        ScriptRunner runner = new ScriptRunner(connection, true, true);
+        ScriptRunner runner = new ScriptRunner(connection, true, false);
         InputStreamReader reader = new InputStreamReader(new FileInputStream("src/Scripts/Drop_tables"));
         try {
             runner.runScript(reader);
@@ -54,7 +62,7 @@ public class ConnectionDriver {
     }
 
     public void fillTables() throws FileNotFoundException {
-        ScriptRunner runner = new ScriptRunner(connection, true, true);
+        ScriptRunner runner = new ScriptRunner(connection, true, false);
         InputStreamReader reader = new InputStreamReader(new FileInputStream("src/Scripts/Fill_tables"));
         try {
             runner.runScript(reader);

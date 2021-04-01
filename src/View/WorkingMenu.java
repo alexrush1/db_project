@@ -38,6 +38,11 @@ public class WorkingMenu {
         panel.add(list_tables);
         list_tables.addActionListener(this::getSchedule);
 
+        JButton passengersMenu = new JButton("Passengers Menu");
+        passengersMenu.setBounds(68, 75, 160, 35);
+        panel.add(passengersMenu);
+        passengersMenu.addActionListener(this::openPassengersMenu);
+
         JButton developerMenu = new JButton("Developer Menu");
         developerMenu.addActionListener(this::openDeveloperMenu);
         developerMenu.setBounds(68, 300, 160, 35);
@@ -69,20 +74,59 @@ public class WorkingMenu {
             while (set.next()) {
                 i++;
                 Object[] row = new Object[8];
-                row[0] = set.getString(2);
-                row[1] = set.getString(3);
-                row[2] = set.getString(4);
-                row[3] = set.getString(5);
-                row[4] = set.getString(6);
-                row[5] = set.getString(7);
-                row[6] = set.getString(8);
-                row[7] = set.getString(9);
+                row[0] = set.getString(3);
+                row[1] = set.getString(4);
+                row[2] = set.getString(5);
+                row[3] = set.getString(6);
+                row[4] = set.getString(7);
+                row[5] = set.getString(8);
+                row[6] = set.getString(9);
+                row[7] = set.getString(10);
                 model.addRow(row);
             }
             set.close();
             JLabel countLabel = new JLabel("Records in table: " + i);
             countLabel.setBounds(600, 300, 200, 20);
             frame.add(countLabel);
+            frame.add(pane);
+            frame.setVisible(true);
+        } catch (SQLException ex) {}
+    }
+
+    public void getPassengersList (ActionEvent event) {
+        frame = new JFrame("Passengers List");
+        frame.setSize(800, 400);
+        frame.setLocationRelativeTo(null);
+        frame.setFocusable(true);
+        try {
+            ResultSet set = conDriver.getPassengersList();
+
+            JTable table = new JTable();
+            Object[] columnNames = {"First name", "Last name", "Document ID", "Flight number", "Status"};
+            DefaultTableModel model = new DefaultTableModel();
+            model.setColumnIdentifiers(columnNames);
+            table.setModel(model);
+            table.setEnabled(false);
+            table.setBackground(Color.gray);
+            table.setForeground(Color.white);
+            table.setRowHeight(20);
+            JScrollPane pane = new JScrollPane(table);
+
+            int i = 0;
+            while (set.next()) {
+                i++;
+                Object[] row = new Object[5];
+                row[0] = set.getString(2);
+                row[1] = set.getString(3);
+                row[2] = set.getString(4);
+                row[3] = set.getString(5);
+                //row[4] = set.getString(6);
+                if (set.getString(6).equals("1")) {
+                    row[4] = "Departured";
+                } else { row[4] = "Detained"; }
+                model.addRow(row);
+            }
+            set.close();
             frame.add(pane);
             frame.setVisible(true);
         } catch (SQLException ex) {}
@@ -111,6 +155,26 @@ public class WorkingMenu {
         fillTables.addActionListener(this::fillTables);
 
         developerMenu.setVisible(true);
+    }
+
+    private void openPassengersMenu(ActionEvent e) {
+        JFrame passengersMenu = new JFrame("Passengers menu");
+        passengersMenu.setSize(300, 150);
+        passengersMenu.setLocationRelativeTo(null);
+        passengersMenu.setFocusable(true);
+        passengersMenu.setLayout(null);
+
+        JButton addPassenger = new JButton("Add passenger");
+        addPassenger.setBounds(68, 15, 160, 35);
+        passengersMenu.add(addPassenger);
+        //addPassenger.addActionListener(this::addPassenger);
+
+        JButton passengerList = new JButton("Passenger list");
+        passengerList.setBounds(68, 55, 160, 35);
+        passengersMenu.add(passengerList);
+        passengerList.addActionListener(this::getPassengersList);
+
+        passengersMenu.setVisible(true);
     }
 
     private void createTables(ActionEvent e) {

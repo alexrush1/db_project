@@ -66,9 +66,11 @@ public class ConnectMenu {
             if (status) {
                 frame.setVisible(false);
                 WorkingMenu workingMenu = new WorkingMenu(conDriver, loginTextField.getText());
+            } else {
+                JOptionPane.showMessageDialog(frame, "Bad connection");
             }
         } catch (SQLException e) {
-            e.getErrorCode();
+            JOptionPane.showMessageDialog(frame, "Bad connection");
         }
     }
 
@@ -78,9 +80,11 @@ public class ConnectMenu {
             if (status) {
                 frame.setVisible(false);
                 WorkingMenu workingMenu = new WorkingMenu(conDriver, "18204_Timofeev");
+            } else {
+                JOptionPane.showMessageDialog(frame, "Bad connection");
             }
         } catch (SQLException e) {
-            e.getErrorCode();
+            JOptionPane.showMessageDialog(frame, "Bad connection");
         }
     }
 

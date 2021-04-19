@@ -10,13 +10,17 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.Objects;
 
 public class ConnectionDriver {
     Connection connection;
     Statement statement;
 
+    ClassLoader cl;
+
     public ConnectionDriver() throws ClassNotFoundException {
         Class.forName("oracle.jdbc.driver.OracleDriver");
+        cl = this.getClass().getClassLoader();
     }
 
     public boolean connect(String ip, String login, String password) throws SQLException {
@@ -57,7 +61,7 @@ public class ConnectionDriver {
     public void createTables() throws IOException, SQLException {
         ScriptRunner runner = new ScriptRunner(connection, true, false);
         System.out.println(System.getProperty("user.dir"));
-        InputStreamReader reader = new InputStreamReader(new FileInputStream("src/Scripts/Create_tables"));
+        InputStreamReader reader = new InputStreamReader(Objects.requireNonNull(cl.getResourceAsStream("Scripts/Create_tables")));
         try {
             runner.runScript(reader);
         } catch (Exception e) {}
@@ -65,7 +69,7 @@ public class ConnectionDriver {
 
     public void dropTables() throws FileNotFoundException {
         ScriptRunner runner = new ScriptRunner(connection, true, false);
-        InputStreamReader reader = new InputStreamReader(new FileInputStream("src/Scripts/Drop_tables"));
+        InputStreamReader reader = new InputStreamReader(Objects.requireNonNull(cl.getResourceAsStream("Scripts/Drop_tables")));
         try {
             runner.runScript(reader);
         } catch (Exception e) {}
@@ -73,7 +77,7 @@ public class ConnectionDriver {
 
     public void fillTables() throws FileNotFoundException {
         ScriptRunner runner = new ScriptRunner(connection, true, false);
-        InputStreamReader reader = new InputStreamReader(new FileInputStream("src/Scripts/Fill_tables"));
+        InputStreamReader reader = new InputStreamReader(Objects.requireNonNull(cl.getResourceAsStream("Scripts/Fill_tables")));
         try {
             runner.runScript(reader);
         } catch (Exception e) {}
@@ -180,6 +184,22 @@ public class ConnectionDriver {
                 "USING (EMPLOYEE_ID)";
         ResultSet resultSet = statement.executeQuery(sql);
         return resultSet;
+    }
+
+    public void deletePassenger(int id) throws SQLException {
+        statement = connection.createStatement();
+        String sql;
+        sql = "DELETE FROM PASSENGERS WHERE ID = " + id;
+        System.out.println(sql);
+        statement.executeQuery(sql);
+    }
+
+    public void deleteEmployee(int id) throws SQLException {
+        statement = connection.createStatement();
+        String sql;
+        sql = "DELETE FROM EMPLOYEES WHERE EMPLOYEE_ID = " + id;
+        System.out.println(sql);
+        statement.executeQuery(sql);
     }
 
 }

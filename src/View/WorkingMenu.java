@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 public class WorkingMenu {
     private ConnectionDriver conDriver;
@@ -171,6 +172,22 @@ public class WorkingMenu {
                 }
             });
 
+            JButton delete = new JButton("Delete");
+            delete.setBounds(350, 320, 100, 35);
+            delete.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        conDriver.deletePassenger(Integer.parseInt((String) model.getValueAt(table.getSelectedRow(), 5)));
+                        JOptionPane.showMessageDialog(passengersMenu, "Please press Update button after edit something");
+                        JOptionPane.showMessageDialog(passengersMenu, "Done!");
+                    } catch (SQLException throwables) {
+                        JOptionPane.showMessageDialog(frame, "Error! " + throwables);
+                    }
+                }
+            });
+
+            frame.add(delete);
             frame.add(update);
             frame.add(edit);
             frame.add(pane);
@@ -198,8 +215,22 @@ public class WorkingMenu {
             table.setForeground(Color.white);
             table.setRowHeight(20);
 
+            Vector<String> sortList = new Vector<>();
+            sortList.add("Sex");
+            sortList.add("Age");
+            sortList.add("Child");
+            sortList.add("Salary");
+            JComboBox sort = new JComboBox<>(sortList);
+            sort.setBounds(320, 10, 100, 30);
+
+            JButton sortButton = new JButton("Sort");
+            sortButton.setBounds(420, 10, 60, 30);
+            //sortButton.addActionListener(this::sort);
+
+
             JScrollPane pane = new JScrollPane(table);
-            pane.setBounds(0,0,800,300);
+
+            pane.setBounds(0,50,800,250);
             pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
             pane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
@@ -235,6 +266,24 @@ public class WorkingMenu {
                 }
             });
 
+            JButton delete = new JButton("Delete");
+            delete.setBounds(350, 320, 100, 35);
+            delete.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        conDriver.deleteEmployee(Integer.parseInt((String) model.getValueAt(table.getSelectedRow(), 5)));
+                        JOptionPane.showMessageDialog(passengersMenu, "Done!");
+                        JOptionPane.showMessageDialog(passengersMenu, "Please press Update button after edit something");
+                    } catch (SQLException throwables) {
+                        JOptionPane.showMessageDialog(frame, "Error! " + throwables);
+                    }
+                }
+            });
+
+            frame.add(sortButton);
+            frame.add(sort);
+            frame.add(delete);
             frame.add(update);
             frame.add(edit);
             frame.add(pane);

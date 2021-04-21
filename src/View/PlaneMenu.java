@@ -14,45 +14,45 @@ public class PlaneMenu {
 
     public PlaneMenu(ConnectionDriver conDriver) {
         this.conDriver = conDriver;
-        JFrame passengersMenu = new JFrame("New Plane");
+        JFrame passengersMenu = new JFrame("Новый самолёт");
         passengersMenu.setSize(300, 375);
         passengersMenu.setLocationRelativeTo(null);
         passengersMenu.setFocusable(true);
         passengersMenu.setLayout(null);
 
-        JLabel idLabel = new JLabel("Plane ID");
+        JLabel idLabel = new JLabel("ID самолёта");
         idLabel.setBounds(30, 10, 100, 30);
 
         JTextField idField = new JTextField(20);
         idField.setBounds(110, 10, 160, 30);
         idField.setEditable(true);
 
-        JLabel aircraftTypeLabel = new JLabel("Aircraft Type");
+        JLabel aircraftTypeLabel = new JLabel("Тип самолёта");
         aircraftTypeLabel.setBounds(30, 50, 100, 30);
 
         JTextField aircraftTypeField = new JTextField(20);
         aircraftTypeField.setBounds(110, 50, 160, 30);
 
-        JLabel repairsNumLabel = new JLabel("Repairs Num");
+        JLabel repairsNumLabel = new JLabel("Число ремонтов");
         repairsNumLabel.setBounds(30, 90, 100, 30);
 
         JTextField repairsNumField = new JTextField(20);
         repairsNumField.setBounds(110, 90, 160, 30);
 
-        JLabel lastRepair = new JLabel("Last Repair");
+        JLabel lastRepair = new JLabel("Посл. ремонт");
         lastRepair.setBounds(30, 130, 100, 30);
 
         JTextField lastRepairField = new JTextField(20);
         lastRepairField.setBounds(110, 130, 160, 30);
         lastRepairField.setToolTipText("ddmmyyyy");
 
-        JLabel ageLabel = new JLabel("Age");
+        JLabel ageLabel = new JLabel("Возраст");
         ageLabel.setBounds(30, 170, 100, 30);
 
         JTextField ageField = new JTextField(20);
         ageField.setBounds(110, 170, 160, 30);
 
-        JLabel flightHours = new JLabel("Flight Hours");
+        JLabel flightHours = new JLabel("Лётные часы");
         flightHours.setBounds(30, 210, 100, 30);
 
         JTextField flightHoursField = new JTextField(20);
@@ -60,15 +60,15 @@ public class PlaneMenu {
 
 
 
-        JButton commit = new JButton("Save");
+        JButton commit = new JButton("Сохранить");
         commit.setBounds(110, 290, 80, 30);
         commit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     conDriver.commitPlane(idField.getText(), aircraftTypeField.getText(), repairsNumField.getText(), lastRepairField.getText(), ageField.getText(), flightHoursField.getText());
-                    JOptionPane.showMessageDialog(passengersMenu, "Done!");
-                    JOptionPane.showMessageDialog(passengersMenu, "Now you should update table");
+                    JOptionPane.showMessageDialog(passengersMenu, "Готово!");
+                    JOptionPane.showMessageDialog(passengersMenu, "Теперь обновите таблицу");
                 } catch (SQLException ee) {
                     JOptionPane.showMessageDialog(passengersMenu, "SQLException [error -1]: " + ee);
                 }
@@ -95,13 +95,13 @@ public class PlaneMenu {
 
     public PlaneMenu(int id, String firstName, String lastName, String age, int sex, String children, String departmentIdd, ConnectionDriver conDriver) {
         this.conDriver = conDriver;
-        JFrame passengersMenu = new JFrame("Edit Employee");
+        JFrame passengersMenu = new JFrame("Правка работника");
         passengersMenu.setSize(300, 375);
         passengersMenu.setLocationRelativeTo(null);
         passengersMenu.setFocusable(true);
         passengersMenu.setLayout(null);
 
-        JLabel idLabel = new JLabel("Employee ID");
+        JLabel idLabel = new JLabel("ID работника");
         idLabel.setBounds(30, 10, 100, 30);
 
         JTextField idField = new JTextField(20);
@@ -109,14 +109,14 @@ public class PlaneMenu {
         idField.setEditable(false);
         idField.setText(String.valueOf(id));
 
-        JLabel firstNameLabel = new JLabel("First name");
+        JLabel firstNameLabel = new JLabel("Фамилия");
         firstNameLabel.setBounds(30, 50, 100, 30);
 
         JTextField firstNameField = new JTextField(20);
         firstNameField.setBounds(110, 50, 160, 30);
         firstNameField.setText(firstName);
 
-        JLabel lastNameLabel = new JLabel("Last name");
+        JLabel lastNameLabel = new JLabel("Имя");
         lastNameLabel.setBounds(30, 90, 100, 30);
 
         JTextField lastNameField = new JTextField(20);

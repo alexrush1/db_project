@@ -13,7 +13,7 @@ public class MedInspectionMenu {
 
     public MedInspectionMenu(ConnectionDriver conDriver, String employeeId, String firstName, String lastName) throws SQLException {
         this.conDriver = conDriver;
-        JFrame passengersMenu = new JFrame("New Inspection");
+        JFrame passengersMenu = new JFrame("Новая запись");
         passengersMenu.setSize(300, 300);
         passengersMenu.setLocationRelativeTo(null);
         passengersMenu.setFocusable(true);
@@ -29,7 +29,7 @@ public class MedInspectionMenu {
         numIdField.setEditable(false);
         numIdField.setText(String.valueOf(count + 1));
 
-        JLabel idLabel = new JLabel("Employee ID");
+        JLabel idLabel = new JLabel("Номер работника");
         idLabel.setBounds(30, 50, 100, 30);
 
         JTextField idField = new JTextField(20);
@@ -37,7 +37,7 @@ public class MedInspectionMenu {
         idField.setEditable(false);
         idField.setText(String.valueOf(employeeId));
 
-        JLabel firstNameLabel = new JLabel("First name");
+        JLabel firstNameLabel = new JLabel("Фамилия");
         firstNameLabel.setBounds(30, 90, 100, 30);
 
         JTextField firstNameField = new JTextField(20);
@@ -45,7 +45,7 @@ public class MedInspectionMenu {
         firstNameField.setText(firstName);
         firstNameField.setEditable(false);
 
-        JLabel lastNameLabel = new JLabel("Last name");
+        JLabel lastNameLabel = new JLabel("Имя");
         lastNameLabel.setBounds(30, 130, 100, 30);
 
         JTextField lastNameField = new JTextField(20);
@@ -53,18 +53,18 @@ public class MedInspectionMenu {
         lastNameField.setText(lastName);
         lastNameField.setEditable(false);
 
-        JLabel status = new JLabel("Insp. status");
+        JLabel status = new JLabel("Рез. инспекции");
         status.setBounds(30, 170, 100, 30);
 
         Vector<String> data = new Vector<>();
-        data.add("Success");
-        data.add("Failed");
+        data.add("Пройден");
+        data.add("Провален");
 
         JComboBox comboBox = new JComboBox(data);
         comboBox.setBounds(110, 170, 160, 30);
 
 
-        JButton commit = new JButton("Save");
+        JButton commit = new JButton("Сохранить");
         commit.setBounds(110, 210, 80, 30);
         commit.addActionListener(new ActionListener() {
             @Override
@@ -76,8 +76,8 @@ public class MedInspectionMenu {
                     } else {
                         conDriver.commitInspection(count + 1, employeeId, 1);
                     }
-                    JOptionPane.showMessageDialog(passengersMenu, "Please press Update button after edit something");
-                    JOptionPane.showMessageDialog(passengersMenu, "Done!");
+                    JOptionPane.showMessageDialog(passengersMenu, "Пожалуйста, обновите таблицу после изменения информации");
+                    JOptionPane.showMessageDialog(passengersMenu, "Готово!");
                     passengersMenu.setVisible(false);
                 } catch (SQLException ee) {
                     JOptionPane.showMessageDialog(passengersMenu, "SQLException [error -1]: " + ee);

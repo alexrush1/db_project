@@ -40,7 +40,7 @@ public class PassengerMenu {
         JTextField lastNameField = new JTextField(20);
         lastNameField.setBounds(110, 90, 160, 30);
 
-        JLabel documentIdLabel = new JLabel("Номер документа");
+        JLabel documentIdLabel = new JLabel("ID документа");
         documentIdLabel.setBounds(30, 130, 100, 30);
 
         JTextField documentIdField = new JTextField(8);
@@ -121,7 +121,7 @@ public class PassengerMenu {
         lastNameField.setBounds(110, 50, 160, 30);
         lastNameField.setText(lastName);
 
-        JLabel documentIdLabel = new JLabel("Номер документа");
+        JLabel documentIdLabel = new JLabel("ID документа");
         documentIdLabel.setBounds(30, 90, 100, 30);
 
         JTextField documentIdField = new JTextField(20);

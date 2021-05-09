@@ -29,7 +29,7 @@ public class MedInspectionMenu {
         numIdField.setEditable(false);
         numIdField.setText(String.valueOf(count + 1));
 
-        JLabel idLabel = new JLabel("Номер работника");
+        JLabel idLabel = new JLabel("ID работника");
         idLabel.setBounds(30, 50, 100, 30);
 
         JTextField idField = new JTextField(20);
@@ -53,7 +53,7 @@ public class MedInspectionMenu {
         lastNameField.setText(lastName);
         lastNameField.setEditable(false);
 
-        JLabel status = new JLabel("Рез. инспекции");
+        JLabel status = new JLabel("Результат");
         status.setBounds(30, 170, 100, 30);
 
         Vector<String> data = new Vector<>();

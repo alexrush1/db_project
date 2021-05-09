@@ -1,0 +1,20 @@
+CREATE ROLE medic_t4;
+grant select on MED_INSPECTION to medic_t4;
+grant insert on MED_INSPECTION to medic_t4;
+
+CREATE ROLE control_t4;
+grant select on FLIGHT_SCHEDULE to control_t4;
+grant select on PASSENGERS to control_t4;
+grant insert on PASSENGERS to control_t4;
+grant delete on PASSENGERS to control_t4;
+grant update on PASSENGERS to control_t4;
+
+CREATE ROLE tech_t4;
+grant select on PLANE to tech_t4;
+grant insert on PLANE to tech_t4;
+grant select on PLANE_EMPLOYEES to tech_t4;
+grant insert on PLANE_EMPLOYEES to tech_t4;
+
+create ROLE hr_t4;
+grant select on EMPLOYEES to hr_t4;
+grant insert on EMPLOYEES to hr_t4;
